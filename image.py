@@ -52,6 +52,7 @@ st.title("Image Upload and YOLOv5 Detection")
 def install_requirements():
     try:
         subprocess.run(["pip", "install", "-r", "requirements.txt"], check=True)
+        subprocess.run(["pip", "install", "torch", "torchvision","torchaudio"], check=True)
         st.success("Dependencies installed successfully.")
     except subprocess.CalledProcessError as e:
         st.error(f"Error installing dependencies: {e}")
