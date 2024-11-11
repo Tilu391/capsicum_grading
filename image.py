@@ -31,15 +31,6 @@ label_name = "image.txt"
 os.makedirs(upload_folder, exist_ok=True)
 os.makedirs(result_folder, exist_ok=True)
 os.makedirs(labels_folder, exist_ok=True)
-def install_requirements():
-    try:
-        subprocess.run(["pip", "install", "-r", "requirements.txt"], check=True)
-        st.success("Dependencies installed successfully.")
-    except subprocess.CalledProcessError as e:
-        st.error(f"Error installing dependencies: {e}")
-
-# Call the function to install requirements
-install_requirements()
 
 # Function to empty a folder
 def empty_folder(folder_path):
@@ -58,6 +49,15 @@ empty_folder(labels_folder)
 
 # Title of the Streamlit app
 st.title("Image Upload and YOLOv5 Detection")
+def install_requirements():
+    try:
+        subprocess.run(["pip", "install", "-r", "requirements.txt"], check=True)
+        st.success("Dependencies installed successfully.")
+    except subprocess.CalledProcessError as e:
+        st.error(f"Error installing dependencies: {e}")
+
+# Call the function to install requirements
+install_requirements()
 
 # Upload image or take a photo
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "png", "jpeg"])
@@ -87,7 +87,6 @@ else:
         if not os.path.exists("yolov5"):
             st.write("Cloning YOLOv5 repository...")
             subprocess.run(["git", "clone", "https://github.com/ultralytics/yolov5.git"])
-        
         if os.path.exists(image_path):
             with st.spinner("Running YOLOv5 detection..."):
                 # YOLOv5 detection command
