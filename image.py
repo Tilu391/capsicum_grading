@@ -31,6 +31,15 @@ label_name = "image.txt"
 os.makedirs(upload_folder, exist_ok=True)
 os.makedirs(result_folder, exist_ok=True)
 os.makedirs(labels_folder, exist_ok=True)
+def install_requirements():
+    try:
+        subprocess.run(["pip", "install", "-r", "requirements.txt"], check=True)
+        st.success("Dependencies installed successfully.")
+    except subprocess.CalledProcessError as e:
+        st.error(f"Error installing dependencies: {e}")
+
+# Call the function to install requirements
+install_requirements()
 
 # Function to empty a folder
 def empty_folder(folder_path):
