@@ -46,6 +46,15 @@ def empty_folder(folder_path):
 empty_folder(upload_folder)
 empty_folder(result_folder)
 empty_folder(labels_folder)
+import subprocess
+import sys
+
+try:
+    import distutils
+except ImportError:
+    print("distutils not found, installing...")
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "python3-distutils"])
+
 
 # Title of the Streamlit app
 st.title("Image Upload and YOLOv5 Detection")
